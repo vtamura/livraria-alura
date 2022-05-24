@@ -1,8 +1,8 @@
 import DAO from '../DAO/DAO.js'
 
-const listaLivros = async (req, res) => {
+const listaAutores = async (req, res) => {
     try {
-        const response = await DAO.list(`SELECT * FROM alura.livros`)
+        const response = await DAO.list(`SELECT * FROM alura.autores`)
 
         return response.status === 200 ? res.json(response.body) : res.status(500).json(response.body)
     } catch(error) {
@@ -14,9 +14,9 @@ const listaLivros = async (req, res) => {
     }
 }
 
-const listaLivro = async (req, res) => {
+const listaAutor = async (req, res) => {
     try {
-        const response = await DAO.list(`SELECT * FROM alura.livros WHERE id_livro = ${req.params.id}`)
+        const response = await DAO.list(`SELECT * FROM alura.autores WHERE id_autor = ${req.params.id}`)
 
         return response.status === 200 ? res.json(response.body) : res.status(500)
     } catch(error) {
@@ -28,11 +28,11 @@ const listaLivro = async (req, res) => {
     }
 }
 
-const insereLivro = async (req, res) => {
+const insereAutor = async (req, res) => {
     try {
-        const {titulo, autor, editora, num_paginas} = req.body
+        const {nome, nacionalidade} = req.body
     
-        const response = await DAO.insert(`INSERT INTO alura.livros (titulo, autor, editora, num_paginas) VALUES ('${titulo}', '${autor}', '${editora}', '${num_paginas}')`)
+        const response = await DAO.insert(`INSERT INTO alura.autores (nome, nacionalidade) VALUES ('${nome}', '${nacionalidade}')`)
     
         return response.status === 200 ? res.json(response.body) : res.status(500)
 
@@ -45,7 +45,7 @@ const insereLivro = async (req, res) => {
     }
 }
 
-const atualizaLivro = async (req, res) => {
+const atualizaAutor = async (req, res) => {
     try {
         const { id } = req.params
         let queryParams = ''
@@ -56,7 +56,7 @@ const atualizaLivro = async (req, res) => {
 
         const modifiedParams = queryParams.slice(0, -2)
 
-        const response = await DAO.update(`UPDATE alura.livros SET ${modifiedParams} WHERE id_livro = ${id}`)
+        const response = await DAO.update(`UPDATE alura.autores SET ${modifiedParams} WHERE id_autor = ${id}`)
 
         return response === 200 ? res.json(response.body) : res.status(500)
     } catch(error) {
@@ -72,7 +72,7 @@ const deletaLivro = async (req, res) => {
     try {
         const { id } = req.params
 
-        const response = await DAO.deleta(`DELETE FROM alura.livros WHERE id_livro = ${id}`)
+        const response = await DAO.deleta(`DELETE FROM alura.autores WHERE id_autor = ${id}`)
 
         return response.status === 200 ? res.json(response.body) : res.status(500) 
     } catch(error) {
@@ -84,4 +84,4 @@ const deletaLivro = async (req, res) => {
     }
 }
 
-export default { listaLivros, listaLivro, insereLivro, atualizaLivro, deletaLivro }
+export default { listaAutores, listaAutor, insereAutor, atualizaAutor, deletaLivro }
