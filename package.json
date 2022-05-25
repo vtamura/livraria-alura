@@ -6,7 +6,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vtamura/node-express.git"
+    "url": "git+https://github.com/vtamura/livraria-alura.git.git"
   },
   "scripts": {
     "dev": "nodemon server.js",
@@ -22,8 +22,8 @@
   },
   "name": "alura-node",
   "bugs": {
-    "url": "https://github.com/vtamura/node-express/issues"
+    "url": "https://github.com/vtamura/livraria-alura.git/issues"
   },
-  "homepage": "https://github.com/vtamura/node-express#readme",
+  "homepage": "https://github.com/vtamura/livraria-alura.git#readme",
   "description": ""
 }
